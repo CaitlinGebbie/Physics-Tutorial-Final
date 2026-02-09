@@ -3,14 +3,17 @@
 #include <glm/glm.hpp>
 #include <vector>
 
+#include "PhysicsObject.h"
+
 class PhysicsScene
 {
 public:
 	PhysicsScene();
 	~PhysicsScene();
 
-	void addActor(PhysicsObject* actor);
+	void addActor(PhysicsObject* actor) { m_actors.push_back(actor); }
 	void removeActor(PhysicsObject* actor);
+
 	void update(float dt);
 	void draw();
 
@@ -24,4 +27,5 @@ protected:
 	glm::vec2 m_gravity = { 0, 0 };
 	float m_timeStep = 0.01f;
 	std::vector<PhysicsObject*> m_actors;
+	std::vector<PhysicsObject*>::iterator it;
 };
